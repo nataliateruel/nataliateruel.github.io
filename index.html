@@ -1,77 +1,163 @@
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-#example1 {
-  border: 2px solid black;
-  padding: 25px;
-  background: url(Background2.png);
-  background-repeat: no-repeat;
-  background-size: auto;
+* {
+  box-sizing: border-box;
+}
+/* Style the top navigation bar */
+.header {
+  background-color:teal;
+  padding: 20px;
+  text-align: center;
+  opacity: 0.5;
 }
 body {
-    background-color: black;
+    background-image: url('Desktop/image258.png');
+    background-size: cover
+}
+.justthetext {
+    margin-left: 30px;
 }
 h1 {
-  text-indent: 50px;
+  text-indent: 10px;
 }
 .right {
   float: right;
   width: 30px;
 }
+$primary: #11998e;
+$secondary: #38ef7d;
+$white: #fff;
+$gray: #9b9b9b;
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $gray;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
+    font-weight:700;    
+  }
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary,$secondary);
+  border-image-slice: 1;
+}
+/* reset input */
+.form__field{
+  &:required,&:invalid { box-shadow:none; }
+}
+/* demo */
+body {
+  font-family: 'Poppins', sans-serif; 
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  background-color:#222222;
+}
 </style>
 
-<div id="example1">
+<div class="header">
 <head>
     <title>Spike calculations</title>
     <header>
-        <h1 style="font-family:verdana;">Spike mutants calculations</h1>
+        <h1 style="font-family:verdana;color:whitesmoke">Spike mutants calculations</h1>
     </header>
 </head>
-  
+</div>
+
+<div class="justthetext">
 <body>
     <br><br>
-    <p style="font-family:verdana;">
-    This contact interface is part of the article <a href="">Modelling conformational state dynamics <br>and its role on infection for SARS-CoV-2 Spike protein variants</a>.
+    <p style="font-family:verdana;color:slategrey">
+    This contact interface is part of the article <a href=""><br>Modelling conformational state dynamics <br>and its role on infection for SARS-CoV-2 Spike protein variants</a>.
     </p>
     <br>
-    <p style="font-family:verdana;">
+    <p style="font-family:verdana;color:slategrey">
     Several single mutants have results available for visualization <a href="https://dms-view.github.io/?markdown-url=https%3A%2F%2Fraw.githubusercontent.com%2Fnataliateruel%2Fdata_Spike%2Fmain%2Finfo.md&data-url=https%3A%2F%2Fraw.githubusercontent.com%2Fnataliateruel%2Fdata_Spike%2Fmain%2Fvibentropy_occupancy_dmsdata.csv&condition=beta%3D1&site_metric=site_median&mutation_metric=mut_diff_delta&selected_sites=G232%2CK417%2CN501&protein-data-color=&protein-other-color=&pdb-url=https%3A%2F%2Fraw.githubusercontent.com%2Fnataliateruel%2Fdata_Spike%2Fmain%2F6vxx_filled.pdb">here</a>.
     </p>
     <br>
-    <p style="font-family:verdana;">
+    <p style="font-family:verdana;color:slategrey">
     The tools to perform the calculations are available <a href="https://github.com/gregorpatof/nrgten_package">here</a>.
     </p>
 
-
+    <div class="form__group field">
     <form
             action="https://formspree.io/f/mzbkjwjz"
             method="POST">
             <br><br><br><br><br><br>
-            <label style="font-family:verdana;">
+            <label style="font-family:verdana;color:slategray">
                 Your email for us to send the results: <br>
-                <input type="text" name="_replyto" placeholder="user@email.com">
+                <input type="text" class="form__field" name="_replyto" placeholder="user@email.com" required />
             </label>
             <br><br><br>
-            <label style="font-family:verdana;">
+            <label style="font-family:verdana;color:slategray">
                 Your base structures for closed and open Spike <br>(Default 6vxx and 6vyb):<br>
-                <textarea name="structures" placeholder="6vxx, 6vyb"></textarea>
+                <textarea name="structures" class="form__field" placeholder="6vxx, 6vyb"></textarea>
             </label>
             <br><br><br>
-            <label style="font-family:verdana;">
+            <label style="font-family:verdana;color:slategray">
                 Your desired mutations from the base structures <br> (accumulated mutations separated by comma, <br>different mutants separated by 
                 semicolon):<br>
-                <textarea name="mutations" placeholder="A222V;A222V,N501Y;"></textarea>
+                <textarea name="mutations" class="form__field" placeholder="A222V;A222V,N501Y;"></textarea>
             </label>
             <br><br><br>
-            <label style="font-family:verdana;">
-                Any addicional message:<br>
-                    <textarea name="message" ></textarea>
+            <label style="font-family:verdana;color:slategray">
+                Any additional message:<br>
+                    <textarea name="message" class="form__field"></textarea>
             </label>
             <br><br><br>
 
             <button type="submit">Send</button>
     </form>
+    </div>
 </body>
 </div>
 </html>
